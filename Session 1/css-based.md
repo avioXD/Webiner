@@ -505,10 +505,226 @@ The `position` property in CSS defines how an element is positioned in a documen
 
 ---
 
-### **🚀 Conclusion**
+# **📌 Media Queries in CSS**
 
-- **`static`** → Normal positioning (default).
-- **`relative`** → Moves relative to itself.
-- **`absolute`** → Moves relative to the closest positioned ancestor.
-- **`fixed`** → Stays fixed relative to the viewport.
-- **`sticky`** → Acts like relative but becomes fixed after scrolling.
+## **What is a Media Query?**
+
+A **Media Query** in CSS allows you to apply different styles based on **screen size, resolution, or device type**. This is essential for **responsive web design**, making websites adaptable to desktops, tablets, and mobile devices.
+
+---
+
+## **🔹 Basic Syntax of Media Queries**
+
+```css
+@media (condition) {
+  /* CSS rules to apply */
+}
+```
+
+For example, to change the background color when the screen width is **less than 600px**:
+
+```css
+@media (max-width: 600px) {
+  body {
+    background-color: lightblue;
+  }
+}
+```
+
+---
+
+## **🔹 Common Media Query Conditions**
+
+| Property       | Description                                  | Example                              |
+| -------------- | -------------------------------------------- | ------------------------------------ |
+| `max-width`    | Targets screens **up to** a specific width.  | `@media (max-width: 768px) {}`       |
+| `min-width`    | Targets screens **from** a specific width.   | `@media (min-width: 1024px) {}`      |
+| `max-height`   | Targets screens **up to** a specific height. | `@media (max-height: 500px) {}`      |
+| `min-height`   | Targets screens **from** a specific height.  | `@media (min-height: 700px) {}`      |
+| `orientation`  | Targets landscape or portrait mode.          | `@media (orientation: portrait) {}`  |
+| `aspect-ratio` | Targets screens based on width/height ratio. | `@media (min-aspect-ratio: 16/9) {}` |
+
+---
+
+## **🔹 Example: Responsive Typography**
+
+```css
+body {
+  font-size: 16px;
+}
+
+@media (max-width: 600px) {
+  body {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 400px) {
+  body {
+    font-size: 12px;
+  }
+}
+```
+
+📌 **Effect:** The text size **decreases** as the screen gets smaller.
+
+---
+
+## **🔹 Example: Responsive Layout (Grid)**
+
+```css
+.container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.item {
+  width: 50%;
+}
+
+/* When screen width is less than 600px, items take full width */
+@media (max-width: 600px) {
+  .item {
+    width: 100%;
+  }
+}
+```
+
+📌 **Effect:** The items **stack on smaller screens**.
+
+---
+
+## **🔹 Media Queries for Common Devices**
+
+### **📱 Mobile-First Responsive Design Approach**
+
+A **mobile-first** approach starts with styles for **small screens** and adds styles for **larger screens** using `min-width`.
+
+```css
+/* Default styles for mobile (small screens) */
+body {
+  font-size: 14px;
+}
+
+/* Tablet (Portrait) - 600px and above */
+@media (min-width: 600px) {
+  body {
+    font-size: 16px;
+  }
+}
+
+/* Laptop - 1024px and above */
+@media (min-width: 1024px) {
+  body {
+    font-size: 18px;
+  }
+}
+
+/* Large Screens - 1200px and above */
+@media (min-width: 1200px) {
+  body {
+    font-size: 20px;
+  }
+}
+```
+
+---
+
+## **🔹 Media Query for Dark Mode**
+
+```css
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: black;
+    color: white;
+  }
+}
+```
+
+📌 **Effect:** The site **automatically switches** to dark mode if the user's device is set to dark mode.
+
+---
+
+## **🔹 Combining Multiple Conditions**
+
+You can **combine** multiple conditions using **`and`**, **`,` (comma for OR)**.
+
+```css
+/* Apply styles for screens between 600px and 1024px */
+@media (min-width: 600px) and (max-width: 1024px) {
+  body {
+    background-color: yellow;
+  }
+}
+
+/* Apply styles for both small screens and portrait orientation */
+@media (max-width: 500px), (orientation: portrait) {
+  body {
+    background-color: pink;
+  }
+}
+```
+
+📌 **Effect:** The background becomes:
+
+- Yellow for screens **between 600px - 1024px**.
+- Pink for screens **smaller than 500px** or when the device is in **portrait mode**.
+
+---
+
+## **🔹 Example: Full Responsive Web Page**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Responsive Page</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        padding: 20px;
+      }
+
+      .container {
+        background-color: lightgray;
+        padding: 20px;
+        border-radius: 10px;
+      }
+
+      /* Mobile */
+      @media (max-width: 600px) {
+        .container {
+          background-color: lightblue;
+        }
+      }
+
+      /* Tablet */
+      @media (min-width: 601px) and (max-width: 1024px) {
+        .container {
+          background-color: lightgreen;
+        }
+      }
+
+      /* Desktop */
+      @media (min-width: 1025px) {
+        .container {
+          background-color: lightcoral;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Responsive Media Query Example</h1>
+    <div class="container">
+      Resize the screen to see the background color change!
+    </div>
+  </body>
+</html>
+```
+
+📌 **Effect:** The background color of `.container` changes based on screen size.
+
+---
