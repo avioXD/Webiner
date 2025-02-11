@@ -1,8 +1,9 @@
- 
-
 ### **CSS: Flex, Display, and Units Explained**
 
 ### **1. Display Property in CSS**
+
+[Flexbox Fun](https://flexbox.fun/app)  
+[CSS Playground on CodeSandbox](https://codesandbox.io/p/sandbox/css-playground-6ki5u)
 
 The `display` property controls how an element is rendered in the layout.
 
